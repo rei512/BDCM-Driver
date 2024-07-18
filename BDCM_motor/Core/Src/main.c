@@ -1,22 +1,42 @@
 /* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -28,6 +48,7 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim14;
 
 /* USER CODE BEGIN PV */
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -38,10 +59,40 @@ static void MX_TIM1_Init(void);
 static void MX_TIM14_Init(void);
 static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+  {
+  	if (htim == &htim1){
+
+  	} else if (htim == &htim14){
+  		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+  		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_15);
+  		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+  		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 99);
+  		HAL_Delay(100);
+  		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+  		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_15);
+  		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 99);
+  		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+  	}
+  }
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (GPIO_Pin == GPIO_PIN_4) {
+
+	} else if (GPIO_Pin == GPIO_PIN_5) {
+
+	} else if (GPIO_Pin == GPIO_PIN_6) {
+
+	} else if (GPIO_Pin == GPIO_PIN_7) {
+
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -52,6 +103,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -60,12 +112,14 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -75,13 +129,44 @@ int main(void)
   MX_TIM14_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 50);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 99);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 50);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 99);
+
+
+
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+
+  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_15);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 99);
+	  HAL_Delay(100);
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_15);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 99);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+  }
   /* USER CODE END 3 */
 }
 
@@ -130,11 +215,13 @@ static void MX_ADC1_Init(void)
 {
 
   /* USER CODE BEGIN ADC1_Init 0 */
+
   /* USER CODE END ADC1_Init 0 */
 
   ADC_ChannelConfTypeDef sConfig = {0};
 
   /* USER CODE BEGIN ADC1_Init 1 */
+
   /* USER CODE END ADC1_Init 1 */
 
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
@@ -173,6 +260,7 @@ static void MX_ADC1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC1_Init 2 */
+
   /* USER CODE END ADC1_Init 2 */
 
 }
@@ -186,9 +274,11 @@ static void MX_I2C1_Init(void)
 {
 
   /* USER CODE BEGIN I2C1_Init 0 */
+
   /* USER CODE END I2C1_Init 0 */
 
   /* USER CODE BEGIN I2C1_Init 1 */
+
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
   hi2c1.Init.Timing = 0x20303E5D;
@@ -218,6 +308,7 @@ static void MX_I2C1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN I2C1_Init 2 */
+
   /* USER CODE END I2C1_Init 2 */
 
 }
@@ -231,6 +322,7 @@ static void MX_TIM1_Init(void)
 {
 
   /* USER CODE BEGIN TIM1_Init 0 */
+
   /* USER CODE END TIM1_Init 0 */
 
   TIM_MasterConfigTypeDef sMasterConfig = {0};
@@ -238,6 +330,7 @@ static void MX_TIM1_Init(void)
   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
   /* USER CODE BEGIN TIM1_Init 1 */
+
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 24-1;
@@ -298,6 +391,7 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM1_Init 2 */
+
   /* USER CODE END TIM1_Init 2 */
   HAL_TIM_MspPostInit(&htim1);
 
@@ -312,11 +406,13 @@ static void MX_TIM14_Init(void)
 {
 
   /* USER CODE BEGIN TIM14_Init 0 */
+
   /* USER CODE END TIM14_Init 0 */
 
   TIM_OC_InitTypeDef sConfigOC = {0};
 
   /* USER CODE BEGIN TIM14_Init 1 */
+
   /* USER CODE END TIM14_Init 1 */
   htim14.Instance = TIM14;
   htim14.Init.Prescaler = 48-1;
@@ -341,6 +437,7 @@ static void MX_TIM14_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM14_Init 2 */
+
   /* USER CODE END TIM14_Init 2 */
 
 }
@@ -386,6 +483,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
 /* USER CODE END 4 */
 
 /**
@@ -395,6 +493,11 @@ static void MX_GPIO_Init(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -409,6 +512,8 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
