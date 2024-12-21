@@ -3795,7 +3795,7 @@
 		(uuid "7821e522-d754-403c-8000-152ac574257f")
 	)
 	(junction
-		(at 261.62 72.39)
+		(at 261.62 80.01)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "838e6768-43fe-44d9-877f-a798687710c0")
@@ -3819,7 +3819,7 @@
 		(uuid "a208f01b-b92d-4c03-8c8b-d10a94653ad8")
 	)
 	(junction
-		(at 261.62 80.01)
+		(at 261.62 72.39)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cd67bf88-f1d9-41a4-b5ae-fa8f8783306b")
@@ -4128,7 +4128,7 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 74.93) (xy 265.43 72.39)
+			(xy 265.43 77.47) (xy 265.43 80.01)
 		)
 		(stroke
 			(width 0)
@@ -4158,7 +4158,7 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 72.39) (xy 252.73 72.39)
+			(xy 261.62 80.01) (xy 252.73 80.01)
 		)
 		(stroke
 			(width 0)
@@ -4208,7 +4208,7 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 80.01) (xy 265.43 80.01)
+			(xy 261.62 72.39) (xy 265.43 72.39)
 		)
 		(stroke
 			(width 0)
@@ -4278,7 +4278,7 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 80.01) (xy 265.43 77.47)
+			(xy 265.43 72.39) (xy 265.43 74.93)
 		)
 		(stroke
 			(width 0)
@@ -4308,7 +4308,7 @@
 	)
 	(wire
 		(pts
-			(xy 252.73 80.01) (xy 261.62 80.01)
+			(xy 252.73 72.39) (xy 261.62 72.39)
 		)
 		(stroke
 			(width 0)
@@ -4328,7 +4328,7 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 72.39) (xy 261.62 72.39)
+			(xy 265.43 80.01) (xy 261.62 80.01)
 		)
 		(stroke
 			(width 0)
@@ -5073,7 +5073,7 @@
 	)
 	(global_label "OUT_A_{2}"
 		(shape input)
-		(at 252.73 72.39 180)
+		(at 252.73 80.01 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5083,7 +5083,7 @@
 		)
 		(uuid "68823141-05f0-4675-9184-875f10a1dda3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 243.0416 72.39 0)
+			(at 243.0416 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5469,7 +5469,7 @@
 	)
 	(global_label "OUT_A_{1}'"
 		(shape output)
-		(at 252.73 80.01 180)
+		(at 252.73 72.39 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5479,7 +5479,7 @@
 		)
 		(uuid "d5b86855-5c9f-4557-8f72-5b6b7d63154d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 242.4876 80.01 0)
+			(at 242.4876 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8421,7 +8421,8 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 270.51 74.93 0)
+		(at 270.51 77.47 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8430,15 +8431,6 @@
 		(fields_autoplaced yes)
 		(uuid "6c79c34d-e23d-4795-91b0-aef85340877d")
 		(property "Reference" "J1"
-			(at 273.05 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "OUT_{A}"
 			(at 273.05 77.47 0)
 			(effects
 				(font
@@ -8447,8 +8439,17 @@
 				(justify left)
 			)
 		)
+		(property "Value" "OUT_{A}"
+			(at 273.05 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Horizontal"
-			(at 270.51 74.93 0)
+			(at 270.51 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8457,7 +8458,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 270.51 74.93 0)
+			(at 270.51 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8466,7 +8467,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 270.51 74.93 0)
+			(at 270.51 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11106,8 +11107,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 261.62 76.2 0)
-		(mirror y)
+		(at 261.62 76.2 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11115,15 +11115,6 @@
 		(dnp no)
 		(uuid "e8ba1667-ec56-4817-b323-489335067787")
 		(property "Reference" "C6"
-			(at 257.81 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.1u"
 			(at 257.81 77.47 0)
 			(effects
 				(font
@@ -11132,8 +11123,17 @@
 				(justify left)
 			)
 		)
+		(property "Value" "0.1u"
+			(at 257.81 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 260.6548 80.01 0)
+			(at 260.6548 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
